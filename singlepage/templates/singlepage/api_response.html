@@ -1,0 +1,56 @@
+{%extends 'singlepage/dashboard.html' %}
+{% load static %}
+
+{% block loadPages %}
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-xl-6 col-lg-8 col-sm-12">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h6 class="fw-medium text-secondary">API Response</h6>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="table-responsive">
+                        <table class="table table-borderless px-0">
+                            <thead>
+                            <tr>
+                                <th class="text-nowrap" scope="col"></th>
+                                <th class="text-nowrap" scope="col"></th>
+                                <th class="text-nowrap" scope="col"></th>
+                                <th class="text-nowrap" scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="api-response-wrapper">
+                            {% for request in requests %}
+                            <tr>
+                                <th class="text-nowrap text-center align-middle" scope="row">
+                                        <span class="material-icons bg-purple-light p-3 rounded-3"
+                                              style="color: rgba(155,27,255,255)">assignment</span>
+                                </th>
+                                <td class="text-nowrap text-dark-purple fw-medium align-middle">
+                                    {{ request.name }}
+                                </td>
+                                <td class="text-nowrap align-middle">
+                                    {% if request.api_request == 200 %}
+                                    <span class="fw-medium text-success h5">success</span>
+                                    {% else %}
+                                    <span class="fw-medium text-danger h5">failed</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-nowrap align-middle">
+                                    <a href="{% url 'singlepage:api_details' request.id %}" class="btn btn-light text-end px-5 py-1" id="api-info" type="button" data-id="{{ request.id }}">
+                                        info
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock loadPages %}

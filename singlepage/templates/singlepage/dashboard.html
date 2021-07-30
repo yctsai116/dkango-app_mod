@@ -1,0 +1,121 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row vh-100">
+        <!-- sidebar -->
+        <div class="col-md-4 col-lg-3 col-xl-2 px-0 shadow-sm
+             multiple-api-sidebar p-5 d-flex flex-column"
+             id="sidebar-component">
+
+            <button class="btn btn-outline-light btn-circle btn-content-center p-0 mb-2 me-2
+                d-flex align-items-center d-lg-none ms-auto" onclick="closeSidebar()">
+                <i class="material-icons">clear</i>
+            </button>
+
+            <ul class="list-group rounded-0 overflow-auto nav nav-pills flex-column sidebar-links">
+                <li class="list-group-item list-group-item-action
+                border-0 bg-transparent px-0">
+                    <a class="btn link link-light nav-link w-100  py-3 px-0  d-block load-page"
+                       data-href="#dashboard"
+                       href="{% url 'singlepage:index' %}">
+                        <span class="d-flex align-items-center"><i
+                                class="material-icons mx-2">dashboard</i> Dashboard</span>
+                    </a>
+                </li>
+                {% if requests %}
+                    {% for request in requests %}
+                        <li class="list-group-item list-group-item-action
+                            border-0 bg-transparent px-0">
+                            <a href="{% url 'singlepage:api_details' request.id %}" class="btn link link-light nav-link w-100
+                             py-3 px-0  d-block load-page" data-href="#api-{{request.id}}">
+                                    <span class="d-flex align-items-center"><i
+                                            class="material-icons mx-2">info</i> {{ request.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% else %}
+                        <li class="list-group-item list-group-item-action
+                                    border-0 bg-transparent px-0">
+                            <button class="btn link link-light nav-link w-100  py-3 px-0  d-block load-page" data-href="#info">
+                                            <span class="d-flex align-items-center"><i
+                                                    class="material-icons mx-2">info</i> Information</span>
+                            </button>
+                        </li>
+                {% endif %}
+            </ul>
+
+            <ul class="list-group rounded-0 overflow-auto nav nav-pills flex-column mt-auto sidebar-links">
+                <li class="list-group-item border-0 bg-transparent text-light px-2">Notes</li>
+                <li class="list-group-item list-group-item-action
+                border-0 bg-transparent px-0">
+                    <button class="btn link link-light nav-link w-100  py-3 px-0  d-block load-page"
+                            data-href="#messages">
+                        <span class="d-flex align-items-center">
+                            <i class="material-icons mx-2">message</i>
+                                <span class="d-flex align-items-center position-relative">
+                                    <span>Messages</span>
+                                    <span class="position-absolute start-100 badge rounded-pill bg-danger ms-2 mt-2">
+                                        9 <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </span>
+                        </span>
+                    </button>
+                </li>
+                <li class="list-group-item list-group-item-action
+                border-0 bg-transparent px-0 position-relative">
+                    <button class="btn link link-light nav-link w-100 py-3 px-0 d-block load-page" data-href="#calls">
+                        <span class="d-flex align-items-center"><i
+                                class="material-icons mx-2">call</i> Call Meeting</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="w-100 vh-100 position-fixed multiple-api-overlay" id="sidebar-overlay"
+             onclick="closeSidebar()"></div>
+
+        <div class="col-lg-9 col-xl-10 ms-md-auto my-3">
+            <nav class="w-100 d-flex px-2 p-3 mb-0 mb-sm-5 align-items-center w-100">
+                <button class="btn btn-outline-light btn-circle btn-content-center py-0
+                d-flex align-items-center d-lg-none text-secondary" onclick="openSidebar()">
+                    <i class="text-secondary material-icons">menu</i>
+                </button>
+                <div class="ms-sm-5 d-none d-sm-block">
+                    <p class="mb-0 text-secondary h6 fw-normal">Hello 👋🏻</p>
+                    <p class="h3 current-component-name">{{ title }}</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-end ms-auto">
+                    <button class="btn btn-outline-light btn-circle btn-content-center position-relative mx-3"
+                            type="button">
+                            <span class="d-block">
+                                <span class="material-icons fs-5 text-muted">notifications</span>
+                                <span class="position-absolute translate-middle p-1 bg-danger border border-light rounded-circle">
+                                    <span class="visually-hidden">New nortification</span>
+                                </span>
+                            </span>
+                    </button>
+                    <button class="btn btn-outline-light btn-circle btn-content-center mx-3" type="button">
+                        <span class="material-icons fs-5 text-muted">settings</span>
+                    </button>
+                    <button class="btn btn-primary-light btn-content-center mx-3 p-3 rounded-lg shadow-sm"
+                            type="button">
+                        <img alt="User Avatar" height="32" src="{% static 'images/placeholder-avatar.png' %}"
+                             width="32"/>
+                    </button>
+                </div>
+            </nav>
+            <div class="px-2 pb-3 ms-sm-5 d-sm-none d-xs-block">
+                <p class="mb-0 text-secondary h6 fw-normal">Hello 👋🏻</p>
+                <p class="h3 current-component-name">Your Test Dashboard</p>
+            </div>
+
+            <main id="load-active-page-content">
+                {%block loadPages%}{%endblock loadPages%}
+            </main>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

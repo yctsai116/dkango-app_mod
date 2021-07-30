@@ -1,0 +1,137 @@
+{%extends 'singlepage/dashboard.html' %}
+{% load static %}
+
+{% block loadPages %}
+<div class="container-fluid my-5">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row align-items-center api-config-container">
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.senderCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="senderCode">Sender Code</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.operatorCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="operatorCode">Operator Code</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.unitCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="unitCode">Unit Code</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.identityType}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="identityType">Identity Type</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.cbCustId}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="cbCustId">CB Customer ID</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.ccCustId}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="ccCustId">CC Customer ID</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.custId}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custId">Customer ID</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.birthDt}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="birthDt">Date Of Birth</label>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.custName}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">Customer Name</label>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.msgNo}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">Message No</label>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.txnCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">TXN Code</label>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.txnTime}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">TXN Time</label>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.receiveCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">Receiver Code</label>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-4 col-xs-12">
+                <div class="group form-group">
+                    {{form.authorizerCode}}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="custName">Authorizer Code</label>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-end mb-5">
+            <div class="col-auto">
+                <button class="btn btn-primary text-end pe-1" type="submit">
+                                <span class="d-flex align-items-center justify-content-around"> Continue <i
+                                        class="material-icons">navigate_next</i> </span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock loadPages %}
